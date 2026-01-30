@@ -41,30 +41,140 @@
             padding-bottom: 80px;
         }
 
+        /* 애니메이션 정의 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes underlineGrow {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-fadeInUp {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .animate-slideInLeft {
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .animate-scaleIn {
+            opacity: 0;
+            animation: scaleIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* 강조 밑줄 애니메이션 */
+        .highlight-text {
+            position: relative;
+            display: inline;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            transition: width 0.6s ease;
+        }
+
+        .highlight-text.animate::after {
+            width: 100%;
+        }
+
+        /* 깜빡이는 강조 */
+        .blink-highlight {
+            animation: pulse 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
         /* 헤더 */
         .header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: white;
-            padding: 60px 20px 40px;
+            padding: 0;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
+        .header-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            opacity: 0.4;
         }
 
         .header-content {
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 1;
+            width: 90%;
         }
 
         .header-badge {
@@ -74,27 +184,106 @@
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 500;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease;
         }
 
         .header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 900;
             margin-bottom: 15px;
             line-height: 1.3;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease 0.2s both;
         }
 
         .header-info {
             font-size: 1rem;
             opacity: 0.95;
             line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s both;
         }
 
         .header-info strong {
             display: block;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-top: 10px;
+        }
+
+        /* 이미지 갤러리 */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            margin: 20px 0;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* 풀 와이드 이미지 */
+        .full-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .full-image-large {
+            height: 250px;
+        }
+
+        /* 이미지 카드 */
+        .image-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 60px 20px 20px;
+        }
+
+        .image-card-overlay h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .image-card-overlay p {
+            font-size: 0.85rem;
+            opacity: 0.9;
         }
 
         /* 네비게이션 */
@@ -137,8 +326,8 @@
         }
 
         .section-title {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 900;
             color: var(--primary-dark);
             margin-bottom: 20px;
             display: flex;
@@ -149,8 +338,8 @@
         .section-title::before {
             content: '';
             width: 5px;
-            height: 24px;
-            background: var(--accent);
+            height: 28px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-light));
             border-radius: 3px;
         }
 
@@ -164,23 +353,25 @@
         }
 
         .card-title {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--text);
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .card-icon {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            animation: float 3s ease-in-out infinite;
         }
 
         .card p {
             color: var(--text-light);
-            font-size: 0.95rem;
+            font-size: 1rem;
             margin-bottom: 12px;
+            line-height: 1.9;
         }
 
         .card p:last-child {
@@ -200,7 +391,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+            background: linear-gradient(to bottom, var(--primary), var(--primary-light), var(--accent));
             border-radius: 3px;
         }
 
@@ -222,36 +413,50 @@
             position: absolute;
             left: -26px;
             top: 5px;
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             background: var(--primary);
             border-radius: 50%;
             border: 3px solid white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            transform: scale(1.2);
+            background: var(--accent);
         }
 
         .timeline-date {
             display: inline-block;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
-            padding: 5px 14px;
+            padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 700;
             margin-bottom: 12px;
         }
 
         .timeline-title {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 700;
             margin-bottom: 10px;
             color: var(--text);
         }
 
         .timeline-desc {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-light);
-            line-height: 1.8;
+            line-height: 1.9;
+        }
+
+        .timeline-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 12px;
         }
 
         /* 방문지 카드 */
@@ -260,7 +465,19 @@
             border-radius: 16px;
             overflow: hidden;
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .visit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .visit-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
         }
 
         .visit-header {
@@ -270,8 +487,8 @@
         }
 
         .visit-header h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 900;
             margin-bottom: 5px;
         }
 
@@ -285,8 +502,8 @@
         }
 
         .visit-body h4 {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.05rem;
+            font-weight: 700;
             color: var(--primary-dark);
             margin: 20px 0 12px;
         }
@@ -296,9 +513,9 @@
         }
 
         .visit-body p, .visit-body li {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-light);
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         .visit-body ul {
@@ -306,114 +523,136 @@
         }
 
         .visit-body li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         /* 하이라이트 박스 */
         .highlight-box {
             background: linear-gradient(135deg, #FFF8E1, #FFECB3);
-            border-left: 4px solid var(--accent);
-            padding: 18px;
+            border-left: 5px solid var(--accent);
+            padding: 20px;
             border-radius: 0 12px 12px 0;
-            margin: 16px 0;
+            margin: 20px 0;
+            animation: slideInLeft 0.6s ease;
         }
 
         .highlight-box p {
             color: #5D4037;
-            font-size: 0.95rem;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.8;
         }
 
         /* 인용문 */
         .quote {
-            background: #E8F5E9;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 16px 0;
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
             position: relative;
+            overflow: hidden;
         }
 
         .quote::before {
             content: '"';
-            font-size: 3rem;
+            font-size: 5rem;
             color: var(--primary);
-            opacity: 0.3;
+            opacity: 0.2;
             position: absolute;
-            top: 5px;
-            left: 15px;
+            top: -10px;
+            left: 10px;
             font-family: Georgia, serif;
         }
 
         .quote p {
             color: var(--primary-dark);
-            font-size: 1rem;
-            font-weight: 500;
-            padding-left: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding-left: 20px;
             font-style: italic;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
         }
 
         /* 숫자 통계 */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 15px;
             margin: 20px 0;
         }
 
         .stat-item {
-            background: white;
-            border-radius: 12px;
-            padding: 20px 15px;
+            background: linear-gradient(135deg, white, #F5F5F5);
+            border-radius: 16px;
+            padding: 25px 15px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
         }
 
         .stat-number {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 900;
             color: var(--primary);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-light);
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* 태그 */
         .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
             margin-top: 15px;
         }
 
         .tag {
             display: inline-block;
-            background: #E8F5E9;
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
             color: var(--primary-dark);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
         }
 
         /* 아코디언 */
         .accordion {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .accordion-header {
             background: white;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: 12px;
             padding: 18px 20px;
             width: 100%;
             text-align: left;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             color: var(--text);
             cursor: pointer;
             display: flex;
@@ -424,11 +663,12 @@
 
         .accordion-header:hover {
             background: #F5F5F5;
+            border-color: var(--primary-light);
         }
 
         .accordion-header.active {
             border-radius: 12px 12px 0 0;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             border-color: var(--primary);
         }
@@ -445,7 +685,7 @@
         .accordion-content {
             display: none;
             background: white;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-top: none;
             border-radius: 0 0 12px 12px;
             padding: 20px;
@@ -453,26 +693,76 @@
 
         .accordion-content.active {
             display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .accordion-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* 프로세스 스텝 */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: #F9FBE7;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateX(5px);
+        }
+
+        .process-number {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .process-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.7;
         }
 
         /* 푸터 */
         .footer {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, var(--primary-dark), #0D3B0D);
             color: white;
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
             margin-top: 40px;
         }
 
         .footer p {
-            font-size: 0.9rem;
+            font-size: 1rem;
             opacity: 0.9;
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         .footer-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 900;
             margin-bottom: 15px;
         }
 
@@ -481,15 +771,15 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             border: none;
             border-radius: 50%;
             font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
             display: none;
             align-items: center;
             justify-content: center;
@@ -499,37 +789,80 @@
 
         .back-to-top.visible {
             display: flex;
+            animation: fadeInUp 0.5s ease;
         }
 
         .back-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
         /* 강조 텍스트 */
         strong {
             color: var(--primary-dark);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         /* 구분선 */
         hr {
             border: none;
-            height: 1px;
-            background: var(--border);
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
             margin: 25px 0;
+        }
+
+        /* 배너 이미지 섹션 */
+        .banner-section {
+            position: relative;
+            margin: 20px 0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(46,125,50,0.85), rgba(76,175,80,0.7));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .banner-overlay h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .banner-overlay p {
+            font-size: 1rem;
+            opacity: 0.95;
         }
     </style>
 </head>
 <body>
     <!-- 헤더 -->
     <header class="header">
+        <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800&q=80" alt="필리핀 풍경" class="header-image">
         <div class="header-content">
             <span class="header-badge">두레생협연합회</span>
             <h1>2025 필리핀<br>민중교류 연수</h1>
             <p class="header-info">
                 2025.12.7(일) ~ 12.11(목)<br>
-                4박 5일<br>
+                4박 5일
                 <strong>참가자 17명</strong>
             </p>
         </div>
@@ -549,34 +882,43 @@
 
     <!-- 소개 섹션 -->
     <section id="intro">
-        <h2 class="section-title">연수 소개</h2>
+        <h2 class="section-title animate-fadeInUp">연수 소개</h2>
 
-        <div class="card">
-            <p>2025년 12월 7일부터 11일까지, 4박 5일간 17명의 참가자가 필리핀을 방문하여 민중교역의 현장을 직접 체험하였습니다.</p>
+        <div class="image-gallery animate-scaleIn">
+            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80" alt="바나나">
+            <img src="https://images.unsplash.com/photo-1527847263472-aa5338d178b8?w=400&q=80" alt="사탕수수">
+            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=80" alt="농장">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&q=80" alt="농민">
+            <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&q=80" alt="수확">
+            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400&q=80" alt="협동">
+        </div>
+
+        <div class="card animate-fadeInUp">
+            <p>2025년 12월 7일부터 11일까지, <span class="highlight-text">4박 5일</span>간 <span class="highlight-text">17명</span>의 참가자가 필리핀을 방문하여 <span class="highlight-text">민중교역</span>의 현장을 직접 체험하였습니다.</p>
             <p>발랑곤 바나나와 마스코바도 설탕의 생산지를 방문하여 생산자들과 교류하고, 민중교역의 가치와 의미를 되새기는 시간을 가졌습니다.</p>
 
             <div class="stats-grid">
-                <div class="stat-item">
+                <div class="stat-item animate-scaleIn delay-1">
                     <div class="stat-number">17명</div>
                     <div class="stat-label">참가자</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item animate-scaleIn delay-2">
                     <div class="stat-number">4박 5일</div>
                     <div class="stat-label">연수 기간</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item animate-scaleIn delay-3">
                     <div class="stat-number">7곳</div>
                     <div class="stat-label">방문지</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item animate-scaleIn delay-4">
                     <div class="stat-number">2004년~</div>
                     <div class="stat-label">교역 시작</div>
                 </div>
             </div>
         </div>
 
-        <div class="quote">
-            <p>민중교역을 통해 팔레스타인과 진정성을 가지고 연대해온 두레생협의 활동을 대내외에 알렸습니다.</p>
+        <div class="quote animate-slideInLeft">
+            <p>민중교역을 통해 <span class="highlight-text">생산자와 소비자가 동등한 파트너</span>로서 연대해온 두레생협의 활동을 대내외에 알렸습니다.</p>
         </div>
     </section>
 
@@ -584,44 +926,50 @@
     <section id="schedule">
         <h2 class="section-title">연수 일정</h2>
 
+        <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&q=80" alt="필리핀" class="full-image animate-scaleIn">
+
         <div class="card">
             <div class="timeline">
                 <div class="timeline-item">
                     <span class="timeline-date">12/7 (일)</span>
-                    <h3 class="timeline-title">출국</h3>
+                    <h3 class="timeline-title">✈️ 출국</h3>
                     <p class="timeline-desc">인천 → 마닐라 → 바콜로드 이동</p>
+                    <img src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600&q=80" alt="공항" class="timeline-image">
                 </div>
 
                 <div class="timeline-item">
                     <span class="timeline-date">12/8 (월)</span>
-                    <h3 class="timeline-title">ATPI 방문</h3>
+                    <h3 class="timeline-title">🏢 ATPI 방문</h3>
                     <p class="timeline-desc">
-                        • 오전: ATPI 사무소 방문<br>
+                        • 오전: <span class="highlight-text">ATPI 사무소</span> 방문<br>
                         • 오후: 사탕수수 농장 및 설탕공장 방문
                     </p>
+                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&q=80" alt="농장" class="timeline-image">
                 </div>
 
                 <div class="timeline-item">
                     <span class="timeline-date">12/9 (화)</span>
-                    <h3 class="timeline-title">ATMC 설탕공장</h3>
+                    <h3 class="timeline-title">🏭 ATMC 설탕공장</h3>
                     <p class="timeline-desc">
-                        • 오전: 바나나 산지 방문 (파나이, 민다나오, 네그로스, 보홀)<br>
+                        • 오전: <span class="highlight-text">바나나 산지</span> 방문<br>
                         • 오후: 민중교역 포럼 / 토론
                     </p>
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80" alt="바나나" class="timeline-image">
                 </div>
 
                 <div class="timeline-item">
                     <span class="timeline-date">12/10 (수)</span>
-                    <h3 class="timeline-title">생산자 교류</h3>
+                    <h3 class="timeline-title">🤝 생산자 교류</h3>
                     <p class="timeline-desc">
                         • 오전: 생산자 조직 방문<br>
                         • 오후: ATPI 본부 방문
                     </p>
+                    <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=600&q=80" alt="교류" class="timeline-image">
                 </div>
 
                 <div class="timeline-item">
                     <span class="timeline-date">12/11 (목)</span>
-                    <h3 class="timeline-title">귀국</h3>
+                    <h3 class="timeline-title">🏠 귀국</h3>
                     <p class="timeline-desc">바콜로드 → 마닐라 → 인천 귀국</p>
                 </div>
             </div>
@@ -632,27 +980,37 @@
     <section id="atpi">
         <h2 class="section-title">ATPI 소개</h2>
 
-        <div class="visit-card">
+        <div class="image-card animate-scaleIn">
+            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80" alt="필리핀 농촌">
+            <div class="image-card-overlay">
+                <h3>Alter Trade Philippines</h3>
+                <p>민중교역의 중심</p>
+            </div>
+        </div>
+
+        <div class="visit-card animate-fadeInUp">
             <div class="visit-header">
-                <h3>ATPI (Alter Trade Philippines, Inc.)</h3>
-                <p>알터트레이드 필리핀</p>
+                <h3>🌿 ATPI</h3>
+                <p>Alter Trade Philippines, Inc.</p>
             </div>
             <div class="visit-body">
                 <h4>설립 배경</h4>
-                <p>1980년대 사탕수수 가격 폭락으로 많은 농민들이 기아에 시달렸습니다. 일본 시민단체의 지원으로 1987년 '네그로스 캠페인'이 시작되었고, 이것이 ATPI 설립의 계기가 되었습니다.</p>
+                <p>1980년대 사탕수수 가격 폭락으로 많은 농민들이 기아에 시달렸습니다. 일본 시민단체의 지원으로 1987년 <span class="highlight-text">'네그로스 캠페인'</span>이 시작되었고, 이것이 ATPI 설립의 계기가 되었습니다.</p>
+
+                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80" alt="농민" class="full-image">
 
                 <h4>현재 규모</h4>
                 <ul>
-                    <li>전체 소농 조직: 196개</li>
-                    <li>바나나 농민: 69개 조직</li>
-                    <li>설탕 농민: 36개 조직, 생산자 23개 조직</li>
-                    <li>기타 작물(코코넛 등): 49개 조직</li>
-                    <li>직원: 약 156명</li>
-                    <li>혜택 농가: 약 2,800가구</li>
+                    <li>전체 소농 조직: <strong>196개</strong></li>
+                    <li>바나나 농민: <strong>69개</strong> 조직</li>
+                    <li>설탕 농민: <strong>36개</strong> 조직, 생산자 23개 조직</li>
+                    <li>기타 작물: <strong>49개</strong> 조직</li>
+                    <li>직원: 약 <strong>156명</strong></li>
+                    <li>혜택 농가: 약 <strong>2,800가구</strong></li>
                 </ul>
 
                 <div class="highlight-box">
-                    <p><strong>'민중교역(People's Trade)'</strong>이라는 이름은 단순한 공정무역을 넘어, 생산자와 소비자가 동등한 파트너로서 연대하는 것을 의미합니다.</p>
+                    <p>🌱 <span class="highlight-text">'민중교역(People's Trade)'</span>이라는 이름은 단순한 공정무역을 넘어, 생산자와 소비자가 동등한 파트너로서 연대하는 것을 의미합니다.</p>
                 </div>
             </div>
         </div>
@@ -668,19 +1026,28 @@
                 <span class="accordion-icon">▼</span>
             </button>
             <div class="accordion-content">
-                <p><strong>생산 지역:</strong> 파나이, 민다나오, 네그로스, 보홀 4개 지역</p>
-                <p><strong>참여 농가:</strong> 2,837가구</p>
+                <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=800&q=80" alt="바나나" class="accordion-image">
+
+                <p><strong>생산 지역:</strong> 파나이, 민다나오, 네그로스, 보홀 <span class="highlight-text">4개 지역</span></p>
+                <p><strong>참여 농가:</strong> <span class="highlight-text">2,837가구</span></p>
+
+                <div class="image-gallery" style="margin: 15px 0;">
+                    <img src="https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&q=80" alt="바나나 농장">
+                    <img src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=400&q=80" alt="바나나">
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80" alt="수확">
+                </div>
+
                 <p><strong>특징:</strong></p>
                 <ul>
                     <li>2017년 바나나 질병 발생 후 복구 진행</li>
                     <li>현재 4~5년 전 수준으로 회복 중</li>
-                    <li>무농약, 친환경 재배</li>
+                    <li><span class="highlight-text">무농약, 친환경</span> 재배</li>
                     <li>소규모 가족 농가 중심</li>
                 </ul>
                 <div class="tags">
-                    <span class="tag">친환경</span>
-                    <span class="tag">소농 지원</span>
-                    <span class="tag">공정무역</span>
+                    <span class="tag">🌿 친환경</span>
+                    <span class="tag">👨‍🌾 소농 지원</span>
+                    <span class="tag">🤝 공정무역</span>
                 </div>
             </div>
         </div>
@@ -691,29 +1058,47 @@
                 <span class="accordion-icon">▼</span>
             </button>
             <div class="accordion-content">
-                <p><strong>생산 면적:</strong> 156개 농가, 147.66헥타르</p>
-                <p><strong>생산량:</strong> 연간 1,000~1,400톤</p>
+                <img src="https://images.unsplash.com/photo-1527847263472-aa5338d178b8?w=800&q=80" alt="사탕수수" class="accordion-image">
+
+                <p><strong>생산 면적:</strong> <span class="highlight-text">156개 농가</span>, 147.66헥타르</p>
+                <p><strong>생산량:</strong> 연간 <span class="highlight-text">1,000~1,400톤</span></p>
+
                 <p><strong>특징:</strong></p>
                 <ul>
-                    <li>90% 이상 유기농 재배 (비료, 살충제 미사용)</li>
+                    <li><span class="highlight-text">90% 이상 유기농</span> 재배</li>
                     <li>전통 방식의 비정제 원당</li>
                     <li>미네랄과 영양소 풍부</li>
                     <li>당도 85Brix, 수분 3% 이하</li>
                 </ul>
 
-                <h4 style="margin-top: 20px;">생산 과정</h4>
-                <ol style="padding-left: 20px; color: var(--text-light);">
-                    <li style="margin-bottom: 8px;">사탕수수 수확 후 즙 추출</li>
-                    <li style="margin-bottom: 8px;">1차 가열 (불순물 제거)</li>
-                    <li style="margin-bottom: 8px;">2~3차 가열 (65 Brix 농축)</li>
-                    <li style="margin-bottom: 8px;">냉각 및 건조</li>
-                    <li>포장 (50kg 단위)</li>
-                </ol>
+                <h4 style="margin-top: 20px; color: var(--primary-dark); font-weight: 700;">⚙️ 생산 과정</h4>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <span class="process-number">1</span>
+                        <span class="process-text">사탕수수 수확 후 즙 추출</span>
+                    </div>
+                    <div class="process-step">
+                        <span class="process-number">2</span>
+                        <span class="process-text">1차 가열 (불순물 제거)</span>
+                    </div>
+                    <div class="process-step">
+                        <span class="process-number">3</span>
+                        <span class="process-text">2~3차 가열 (65 Brix 농축)</span>
+                    </div>
+                    <div class="process-step">
+                        <span class="process-number">4</span>
+                        <span class="process-text">냉각 및 건조</span>
+                    </div>
+                    <div class="process-step">
+                        <span class="process-number">5</span>
+                        <span class="process-text">포장 (50kg 단위)</span>
+                    </div>
+                </div>
 
                 <div class="tags">
-                    <span class="tag">유기농</span>
-                    <span class="tag">비정제</span>
-                    <span class="tag">전통방식</span>
+                    <span class="tag">🌱 유기농</span>
+                    <span class="tag">✨ 비정제</span>
+                    <span class="tag">🏺 전통방식</span>
                 </div>
             </div>
         </div>
@@ -723,55 +1108,59 @@
     <section id="visits">
         <h2 class="section-title">주요 방문지</h2>
 
-        <div class="visit-card">
+        <div class="visit-card animate-fadeInUp">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80" alt="설탕농장" class="visit-image">
             <div class="visit-header" style="background: linear-gradient(135deg, #1565C0, #42A5F5);">
-                <h3>LUFISFA</h3>
+                <h3>🏭 LUFISFA</h3>
                 <p>설탕 생산자 협동조합</p>
             </div>
             <div class="visit-body">
-                <p>1982년에 설립되어 2011년 협동조합으로 재조직된 농민 단체입니다. 설탕 농장, 가공장, 공동 창고를 운영하며 농민들의 자립을 지원합니다.</p>
-                <p>조합원들은 수익의 일부를 공동 기금으로 적립하여 교육, 의료, 긴급 지원에 사용합니다.</p>
+                <p>1982년에 설립되어 2011년 협동조합으로 재조직된 농민 단체입니다. 설탕 농장, 가공장, 공동 창고를 운영하며 <span class="highlight-text">농민들의 자립</span>을 지원합니다.</p>
+                <p>조합원들은 수익의 일부를 공동 기금으로 적립하여 <span class="highlight-text">교육, 의료, 긴급 지원</span>에 사용합니다.</p>
             </div>
         </div>
 
-        <div class="visit-card">
+        <div class="visit-card animate-fadeInUp delay-1">
+            <img src="https://images.unsplash.com/photo-1527847263472-aa5338d178b8?w=800&q=80" alt="설탕공장" class="visit-image">
             <div class="visit-header" style="background: linear-gradient(135deg, #6D4C41, #A1887F);">
-                <h3>ATMC (설탕 공장)</h3>
+                <h3>⚙️ ATMC</h3>
                 <p>Alter Trade Manufacturing Corporation</p>
             </div>
             <div class="visit-body">
-                <p>78개 농민 조직에서 생산한 사탕수수를 가공하는 설탕 공장입니다. 연간 80톤의 설탕을 생산하며, 전 직원 5명이 운영합니다.</p>
+                <p><span class="highlight-text">78개 농민 조직</span>에서 생산한 사탕수수를 가공하는 설탕 공장입니다. 연간 <span class="highlight-text">80톤</span>의 설탕을 생산합니다.</p>
                 <h4>품질 기준</h4>
                 <ul>
-                    <li>수분 함량: 3% 이하</li>
-                    <li>당도: 85 Brix</li>
-                    <li>pH: 5.5</li>
+                    <li>수분 함량: <strong>3% 이하</strong></li>
+                    <li>당도: <strong>85 Brix</strong></li>
+                    <li>pH: <strong>5.5</strong></li>
                 </ul>
             </div>
         </div>
 
-        <div class="visit-card">
+        <div class="visit-card animate-fadeInUp delay-2">
+            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80" alt="바나나농장" class="visit-image">
             <div class="visit-header" style="background: linear-gradient(135deg, #2E7D32, #66BB6A);">
-                <h3>DAFWARBA</h3>
+                <h3>🌾 DAFWARBA</h3>
                 <p>농지개혁 수혜 농민 협회</p>
             </div>
             <div class="visit-body">
-                <p>1970년대 대지주 소유였던 토지가 농지개혁을 통해 농민들에게 분배되면서 시작된 협회입니다.</p>
+                <p>1970년대 대지주 소유였던 토지가 <span class="highlight-text">농지개혁</span>을 통해 농민들에게 분배되면서 시작된 협회입니다.</p>
                 <p>2003년 두레생협과 '발랑곤 바나나'와 '민중교역 설탕' 거래를 시작했습니다.</p>
                 <div class="highlight-box">
-                    <p>"이 땅에서 일하는 것이 곧 우리의 권리"라는 신념으로 농민들이 협동하고 있습니다.</p>
+                    <p>💪 "이 땅에서 일하는 것이 곧 <span class="highlight-text">우리의 권리</span>"라는 신념으로 농민들이 협동하고 있습니다.</p>
                 </div>
             </div>
         </div>
 
-        <div class="visit-card">
+        <div class="visit-card animate-fadeInUp delay-3">
+            <img src="https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=800&q=80" alt="산악지역" class="visit-image">
             <div class="visit-header" style="background: linear-gradient(135deg, #F57C00, #FFB74D);">
-                <h3>PIBFA</h3>
+                <h3>🏔️ PIBFA</h3>
                 <p>바나나 생산자 협회</p>
             </div>
             <div class="visit-body">
-                <p>해발 2,465m 산악 지역에서 바나나를 재배하는 농민 협회입니다. 500m 이상의 고지대에서 1년 4개월에 걸쳐 바나나가 자랍니다.</p>
-                <p>2006년 ATPI와 협력을 시작하여 2013년 정식 회원이 되었습니다. 70여 가구가 1.5~0.2헥타르의 소규모 농장을 운영합니다.</p>
+                <p>해발 <span class="highlight-text">2,465m</span> 산악 지역에서 바나나를 재배하는 농민 협회입니다. 500m 이상의 고지대에서 <span class="highlight-text">1년 4개월</span>에 걸쳐 바나나가 자랍니다.</p>
+                <p>2006년 ATPI와 협력을 시작하여 2013년 정식 회원이 되었습니다. <span class="highlight-text">70여 가구</span>가 소규모 농장을 운영합니다.</p>
             </div>
         </div>
     </section>
@@ -780,34 +1169,42 @@
     <section id="meaning">
         <h2 class="section-title">민중교역의 의미</h2>
 
-        <div class="card">
+        <div class="banner-section animate-scaleIn">
+            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=800&q=80" alt="협력" class="banner-image">
+            <div class="banner-overlay">
+                <h3>🤝 People's Trade</h3>
+                <p>생산자와 소비자가<br>동등한 파트너로 연대하는 무역</p>
+            </div>
+        </div>
+
+        <div class="card animate-fadeInUp">
             <h3 class="card-title">
-                <span class="card-icon">🤝</span>
+                <span class="card-icon">🌍</span>
                 People's Trade
             </h3>
-            <p>민중교역은 단순한 '공정무역(Fair Trade)'을 넘어서는 개념입니다. 생산자와 소비자가 <strong>'동등한 파트너'</strong>로서 서로를 존중하고 연대하는 것을 의미합니다.</p>
+            <p>민중교역은 단순한 <span class="highlight-text">'공정무역(Fair Trade)'</span>을 넘어서는 개념입니다. 생산자와 소비자가 <span class="highlight-text blink-highlight">'동등한 파트너'</span>로서 서로를 존중하고 연대하는 것을 의미합니다.</p>
 
             <hr>
 
-            <h4 style="font-size: 1.05rem; margin: 15px 0 10px; color: var(--primary-dark);">핵심 가치</h4>
+            <h4 style="font-size: 1.1rem; margin: 20px 0 15px; color: var(--primary-dark); font-weight: 900;">💎 핵심 가치</h4>
             <ul style="padding-left: 20px; color: var(--text-light);">
-                <li><strong>생산자 자립:</strong> 농민들이 스스로 조직을 만들고 운영</li>
-                <li><strong>공정한 가격:</strong> 시장 가격이 아닌 생산 비용과 생활 보장 기준</li>
-                <li><strong>지속 가능성:</strong> 환경을 해치지 않는 친환경 농법</li>
-                <li><strong>상호 연대:</strong> 소비자와 생산자가 서로의 삶에 관심</li>
+                <li><span class="highlight-text">생산자 자립:</span> 농민들이 스스로 조직을 만들고 운영</li>
+                <li><span class="highlight-text">공정한 가격:</span> 시장 가격이 아닌 생산 비용과 생활 보장 기준</li>
+                <li><span class="highlight-text">지속 가능성:</span> 환경을 해치지 않는 친환경 농법</li>
+                <li><span class="highlight-text">상호 연대:</span> 소비자와 생산자가 서로의 삶에 관심</li>
             </ul>
         </div>
 
-        <div class="quote">
-            <p>1980년대 기아 상황에서 시작된 민중교역은 '나눔'이 아닌 '연대'의 정신으로, 생산자와 소비자가 함께 성장하는 새로운 무역의 길을 열었습니다.</p>
+        <div class="quote animate-slideInLeft">
+            <p>1980년대 기아 상황에서 시작된 민중교역은 <span class="highlight-text">'나눔'이 아닌 '연대'</span>의 정신으로, 생산자와 소비자가 함께 성장하는 새로운 무역의 길을 열었습니다.</p>
         </div>
 
-        <div class="card">
+        <div class="card animate-fadeInUp">
             <h3 class="card-title">
                 <span class="card-icon">🌱</span>
                 두레생협과 민중교역
             </h3>
-            <p>2004년 두레생협은 ATPI와 민중교역을 시작했습니다. 단순히 상품을 수입하는 것이 아니라, 생산자들의 삶과 지역사회 발전에 함께 참여하고 있습니다.</p>
+            <p>2004년 두레생협은 ATPI와 민중교역을 시작했습니다. 단순히 상품을 수입하는 것이 아니라, <span class="highlight-text">생산자들의 삶과 지역사회 발전</span>에 함께 참여하고 있습니다.</p>
 
             <div class="stats-grid">
                 <div class="stat-item">
@@ -819,15 +1216,17 @@
                     <div class="stat-label">혜택 농가</div>
                 </div>
             </div>
+
+            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80" alt="연대" class="full-image">
         </div>
     </section>
 
     <!-- 푸터 -->
     <footer class="footer">
-        <p class="footer-logo">두레생협연합회</p>
+        <p class="footer-logo">🌿 두레생협연합회</p>
         <p>
             2025 필리핀 민중교류 연수 자료집<br>
-            함께하는 민중교역, 연대하는 생활협동조합
+            <strong>함께하는 민중교역, 연대하는 생활협동조합</strong>
         </p>
     </footer>
 
@@ -835,6 +1234,35 @@
     <button class="back-to-top" id="backToTop">↑</button>
 
     <script>
+        // 스크롤 애니메이션
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+
+                    // 강조 텍스트 애니메이션
+                    const highlights = entry.target.querySelectorAll('.highlight-text');
+                    highlights.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.classList.add('animate');
+                        }, index * 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // 애니메이션 요소 관찰
+        document.querySelectorAll('.animate-fadeInUp, .animate-slideInLeft, .animate-scaleIn').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
         // 네비게이션 활성화
         const navLinks = document.querySelectorAll('.nav a');
         const sections = document.querySelectorAll('section');
@@ -899,6 +1327,15 @@
                     top: targetPosition,
                     behavior: 'smooth'
                 });
+            });
+        });
+
+        // 페이지 로드 시 첫 화면 애니메이션
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.highlight-text').forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('animate');
+                }, 1000 + index * 150);
             });
         });
     </script>
