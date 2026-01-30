@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2025 필리핀 민중교류 연수</title>
+    <title>2025 필리핀 민중교류 연수 | Philippines People's Exchange</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Sans:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2E7D32;
@@ -28,12 +28,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Noto Sans KR', 'Noto Sans', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
@@ -41,94 +39,82 @@
             padding-bottom: 80px;
         }
 
-        /* 애니메이션 정의 */
+        /* 애니메이션 */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-
         @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
-
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
         @keyframes underlineGrow {
             from { width: 0; }
             to { width: 100%; }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
+        .animate-scaleIn { animation: scaleIn 0.6s ease forwards; }
+        .animate-slideInLeft { animation: slideInLeft 0.8s ease forwards; }
+
+        /* 언어 선택 */
+        .lang-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 200;
+            display: flex;
+            gap: 5px;
+            background: rgba(255,255,255,0.95);
+            padding: 8px;
+            border-radius: 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.15);
         }
 
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+        .lang-btn {
+            padding: 8px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-light);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
         }
 
-        .animate-fadeInUp {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
+        .lang-btn:hover:not(.active) {
+            background: #E8F5E9;
         }
 
-        .animate-slideInLeft {
-            opacity: 0;
-            animation: slideInLeft 0.8s ease forwards;
-        }
-
-        .animate-scaleIn {
-            opacity: 0;
-            animation: scaleIn 0.6s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-
-        /* 강조 밑줄 애니메이션 */
+        /* 강조 밑줄 */
         .highlight-text {
             position: relative;
             display: inline;
             color: var(--primary-dark);
             font-weight: 700;
         }
-
         .highlight-text::after {
             content: '';
             position: absolute;
@@ -140,16 +126,7 @@
             border-radius: 2px;
             transition: width 0.6s ease;
         }
-
-        .highlight-text.animate::after {
-            width: 100%;
-        }
-
-        /* 깜빡이는 강조 */
-        .blink-highlight {
-            animation: pulse 2s ease-in-out infinite;
-            display: inline-block;
-        }
+        .highlight-text.animate::after { width: 100%; }
 
         /* 헤더 */
         .header {
@@ -160,14 +137,12 @@
             position: relative;
             overflow: hidden;
         }
-
         .header-image {
             width: 100%;
-            height: 280px;
+            height: 300px;
             object-fit: cover;
-            opacity: 0.4;
+            opacity: 0.5;
         }
-
         .header-content {
             position: absolute;
             top: 50%;
@@ -175,8 +150,8 @@
             transform: translate(-50%, -50%);
             z-index: 1;
             width: 90%;
+            padding-top: 30px;
         }
-
         .header-badge {
             display: inline-block;
             background: rgba(255,255,255,0.2);
@@ -186,104 +161,23 @@
             font-weight: 500;
             margin-bottom: 15px;
             backdrop-filter: blur(10px);
-            animation: fadeInUp 0.8s ease;
         }
-
         .header h1 {
-            font-size: 2rem;
+            font-size: 1.9rem;
             font-weight: 900;
             margin-bottom: 15px;
             line-height: 1.3;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            animation: fadeInUp 0.8s ease 0.2s both;
         }
-
         .header-info {
             font-size: 1rem;
             opacity: 0.95;
             line-height: 1.8;
-            animation: fadeInUp 0.8s ease 0.4s both;
         }
-
         .header-info strong {
             display: block;
             font-size: 1.2rem;
             margin-top: 10px;
-        }
-
-        /* 이미지 갤러리 */
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4px;
-            margin: 20px 0;
-        }
-
-        .image-gallery img {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .image-gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        /* 풀 와이드 이미지 */
-        .full-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin: 20px 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-
-        .full-image-large {
-            height: 250px;
-        }
-
-        /* 이미지 카드 */
-        .image-card {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-        }
-
-        .image-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .image-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .image-card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 60px 20px 20px;
-        }
-
-        .image-card-overlay h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .image-card-overlay p {
-            font-size: 0.85rem;
-            opacity: 0.9;
         }
 
         /* 네비게이션 */
@@ -296,37 +190,31 @@
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
-
         .nav-inner {
             display: flex;
             min-width: max-content;
             padding: 0 10px;
         }
-
         .nav a {
             display: block;
-            padding: 15px 18px;
+            padding: 15px 16px;
             text-decoration: none;
             color: var(--text-light);
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
             white-space: nowrap;
             transition: all 0.3s;
             border-bottom: 3px solid transparent;
         }
-
         .nav a:hover, .nav a.active {
             color: var(--primary);
             border-bottom-color: var(--primary);
         }
 
-        /* 섹션 공통 */
-        section {
-            padding: 30px 20px;
-        }
-
+        /* 섹션 */
+        section { padding: 30px 20px; }
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 900;
             color: var(--primary-dark);
             margin-bottom: 20px;
@@ -334,39 +222,60 @@
             align-items: center;
             gap: 10px;
         }
-
         .section-title::before {
             content: '';
             width: 5px;
-            height: 28px;
+            height: 26px;
             background: linear-gradient(to bottom, var(--accent), var(--accent-light));
             border-radius: 3px;
         }
 
-        /* 카드 스타일 */
+        /* 이미지 갤러리 */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin: 20px 0;
+        }
+        .image-gallery img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .image-gallery img:hover { transform: scale(1.05); }
+
+        .full-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+
+        /* 카드 */
         .card {
             background: var(--card-bg);
             border-radius: 16px;
             padding: 24px;
             margin-bottom: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
         }
-
         .card-title {
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
         .card-icon {
             font-size: 1.8rem;
             animation: float 3s ease-in-out infinite;
         }
-
         .card p {
             color: var(--text-light);
             font-size: 1rem;
@@ -374,16 +283,11 @@
             line-height: 1.9;
         }
 
-        .card p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* 일정 타임라인 */
+        /* 타임라인 */
         .timeline {
             position: relative;
             padding-left: 30px;
         }
-
         .timeline::before {
             content: '';
             position: absolute;
@@ -394,20 +298,17 @@
             background: linear-gradient(to bottom, var(--primary), var(--primary-light), var(--accent));
             border-radius: 3px;
         }
-
         .timeline-item {
             position: relative;
             margin-bottom: 25px;
             padding-bottom: 25px;
             border-bottom: 1px solid var(--border);
         }
-
         .timeline-item:last-child {
             margin-bottom: 0;
             padding-bottom: 0;
             border-bottom: none;
         }
-
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -419,41 +320,30 @@
             border-radius: 50%;
             border: 3px solid white;
             box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-            transition: transform 0.3s ease;
         }
-
-        .timeline-item:hover::before {
-            transform: scale(1.2);
-            background: var(--accent);
-        }
-
         .timeline-date {
             display: inline-block;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
             margin-bottom: 12px;
         }
-
         .timeline-title {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 10px;
-            color: var(--text);
         }
-
         .timeline-desc {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-light);
-            line-height: 1.9;
+            line-height: 1.8;
         }
-
         .timeline-image {
             width: 100%;
-            height: 120px;
+            height: 130px;
             object-fit: cover;
             border-radius: 10px;
             margin-top: 12px;
@@ -466,79 +356,56 @@
             overflow: hidden;
             margin-bottom: 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s;
         }
-
-        .visit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-        }
-
+        .visit-card:hover { transform: translateY(-5px); }
         .visit-image {
             width: 100%;
-            height: 160px;
+            height: 170px;
             object-fit: cover;
         }
-
         .visit-header {
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
-            padding: 20px;
+            padding: 18px 20px;
         }
-
         .visit-header h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 900;
             margin-bottom: 5px;
         }
-
         .visit-header p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.9;
         }
-
         .visit-body {
             padding: 20px;
         }
-
         .visit-body h4 {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--primary-dark);
-            margin: 20px 0 12px;
+            margin: 18px 0 10px;
         }
-
-        .visit-body h4:first-child {
-            margin-top: 0;
-        }
-
         .visit-body p, .visit-body li {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-light);
-            line-height: 1.9;
+            line-height: 1.85;
         }
-
-        .visit-body ul {
-            padding-left: 20px;
-        }
-
-        .visit-body li {
-            margin-bottom: 10px;
-        }
+        .visit-body ul { padding-left: 20px; }
+        .visit-body li { margin-bottom: 8px; }
 
         /* 하이라이트 박스 */
         .highlight-box {
             background: linear-gradient(135deg, #FFF8E1, #FFECB3);
             border-left: 5px solid var(--accent);
-            padding: 20px;
+            padding: 18px;
             border-radius: 0 12px 12px 0;
-            margin: 20px 0;
-            animation: slideInLeft 0.6s ease;
+            margin: 18px 0;
         }
-
         .highlight-box p {
             color: #5D4037;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             line-height: 1.8;
         }
@@ -547,69 +414,54 @@
         .quote {
             background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
             border-radius: 16px;
-            padding: 25px;
-            margin: 20px 0;
+            padding: 22px;
+            margin: 18px 0;
             position: relative;
-            overflow: hidden;
         }
-
         .quote::before {
             content: '"';
-            font-size: 5rem;
+            font-size: 4rem;
             color: var(--primary);
             opacity: 0.2;
             position: absolute;
-            top: -10px;
-            left: 10px;
+            top: -5px;
+            left: 12px;
             font-family: Georgia, serif;
         }
-
         .quote p {
             color: var(--primary-dark);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            padding-left: 20px;
+            padding-left: 15px;
             font-style: italic;
             line-height: 1.9;
-            position: relative;
-            z-index: 1;
         }
 
-        /* 숫자 통계 */
+        /* 통계 */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 12px;
             margin: 20px 0;
         }
-
         .stat-item {
             background: linear-gradient(135deg, white, #F5F5F5);
-            border-radius: 16px;
-            padding: 25px 15px;
+            border-radius: 14px;
+            padding: 22px 12px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
             border: 1px solid var(--border);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
         }
-
-        .stat-item:hover {
-            transform: translateY(-3px);
-        }
-
+        .stat-item:hover { transform: translateY(-3px); }
         .stat-number {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: var(--primary);
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 6px;
         }
-
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-light);
             font-weight: 600;
         }
@@ -618,40 +470,33 @@
         .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             margin-top: 15px;
         }
-
         .tag {
-            display: inline-block;
             background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
             color: var(--primary-dark);
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.85rem;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
-
         .tag:hover {
             background: var(--primary);
             color: white;
-            transform: scale(1.05);
         }
 
         /* 아코디언 */
-        .accordion {
-            margin-bottom: 15px;
-        }
-
+        .accordion { margin-bottom: 15px; }
         .accordion-header {
             background: white;
             border: 2px solid var(--border);
             border-radius: 12px;
-            padding: 18px 20px;
+            padding: 16px 18px;
             width: 100%;
             text-align: left;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--text);
             cursor: pointer;
@@ -660,28 +505,19 @@
             align-items: center;
             transition: all 0.3s;
         }
-
-        .accordion-header:hover {
-            background: #F5F5F5;
-            border-color: var(--primary-light);
-        }
-
+        .accordion-header:hover { background: #F5F5F5; }
         .accordion-header.active {
             border-radius: 12px 12px 0 0;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             border-color: var(--primary);
         }
-
         .accordion-icon {
-            font-size: 1.2rem;
             transition: transform 0.3s;
         }
-
         .accordion-header.active .accordion-icon {
             transform: rotate(180deg);
         }
-
         .accordion-content {
             display: none;
             background: white;
@@ -690,45 +526,38 @@
             border-radius: 0 0 12px 12px;
             padding: 20px;
         }
-
         .accordion-content.active {
             display: block;
             animation: fadeIn 0.4s ease;
         }
-
         .accordion-image {
             width: 100%;
-            height: 150px;
+            height: 160px;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 15px;
         }
 
-        /* 프로세스 스텝 */
+        /* 프로세스 */
         .process-steps {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 12px;
+            margin: 18px 0;
         }
-
         .process-step {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            padding: 15px;
+            gap: 12px;
+            padding: 14px;
             background: #F9FBE7;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            transition: transform 0.3s;
         }
-
-        .process-step:hover {
-            transform: translateX(5px);
-        }
-
+        .process-step:hover { transform: translateX(5px); }
         .process-number {
-            width: 35px;
-            height: 35px;
+            width: 32px;
+            height: 32px;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             border-radius: 50%;
@@ -736,95 +565,27 @@
             align-items: center;
             justify-content: center;
             font-weight: 900;
+            font-size: 0.9rem;
             flex-shrink: 0;
         }
-
         .process-text {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-light);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
-        /* 푸터 */
-        .footer {
-            background: linear-gradient(135deg, var(--primary-dark), #0D3B0D);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .footer p {
-            font-size: 1rem;
-            opacity: 0.9;
-            line-height: 1.9;
-        }
-
-        .footer-logo {
-            font-size: 1.4rem;
-            font-weight: 900;
-            margin-bottom: 15px;
-        }
-
-        /* 맨 위로 버튼 */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 99;
-            transition: all 0.3s;
-        }
-
-        .back-to-top.visible {
-            display: flex;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
-        /* 강조 텍스트 */
-        strong {
-            color: var(--primary-dark);
-            font-weight: 700;
-        }
-
-        /* 구분선 */
-        hr {
-            border: none;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            margin: 25px 0;
-        }
-
-        /* 배너 이미지 섹션 */
+        /* 배너 */
         .banner-section {
             position: relative;
             margin: 20px 0;
             border-radius: 16px;
             overflow: hidden;
         }
-
         .banner-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-
         .banner-overlay {
             position: absolute;
             top: 0;
@@ -840,30 +601,101 @@
             text-align: center;
             padding: 20px;
         }
-
         .banner-overlay h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 900;
             margin-bottom: 10px;
         }
-
         .banner-overlay p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             opacity: 0.95;
         }
+
+        /* 푸터 */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark), #0D3B0D);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        .footer-logo {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        /* 맨위로 버튼 */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+            transition: all 0.3s;
+        }
+        .back-to-top.visible { display: flex; }
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        strong {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 22px 0;
+        }
+
+        /* 다국어 - 숨김 처리 */
+        [data-lang] { display: none; }
+        [data-lang="ko"] { display: block; }
+        span[data-lang="ko"], strong[data-lang="ko"] { display: inline; }
     </style>
 </head>
 <body>
+    <!-- 언어 선택 -->
+    <div class="lang-selector">
+        <button class="lang-btn active" data-select-lang="ko">한국어</button>
+        <button class="lang-btn" data-select-lang="en">English</button>
+        <button class="lang-btn" data-select-lang="hil">Hiligaynon</button>
+    </div>
+
     <!-- 헤더 -->
     <header class="header">
-        <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800&q=80" alt="필리핀 풍경" class="header-image">
+        <img src="images/img_001.jpeg" alt="필리핀" class="header-image">
         <div class="header-content">
-            <span class="header-badge">두레생협연합회</span>
-            <h1>2025 필리핀<br>민중교류 연수</h1>
+            <span class="header-badge" data-lang="ko">두레생협연합회</span>
+            <span class="header-badge" data-lang="en">Dure Coop Federation</span>
+            <span class="header-badge" data-lang="hil">Dure Coop Federation</span>
+
+            <h1 data-lang="ko">2025 필리핀<br>민중교류 연수</h1>
+            <h1 data-lang="en">2025 Philippines<br>People's Exchange Program</h1>
+            <h1 data-lang="hil">2025 Pilipinas<br>Pagbinuligay sang Pumuluyo</h1>
+
             <p class="header-info">
-                2025.12.7(일) ~ 12.11(목)<br>
-                4박 5일
-                <strong>참가자 17명</strong>
+                <span data-lang="ko">2025.12.7(일) ~ 12.11(목)<br>4박 5일<br><strong>참가자 17명</strong></span>
+                <span data-lang="en">Dec 7-11, 2025<br>5 Days / 4 Nights<br><strong>17 Participants</strong></span>
+                <span data-lang="hil">Dis 7-11, 2025<br>5 ka Adlaw / 4 ka Gab-i<br><strong>17 ka Partisipante</strong></span>
             </p>
         </div>
     </header>
@@ -871,106 +703,166 @@
     <!-- 네비게이션 -->
     <nav class="nav">
         <div class="nav-inner">
-            <a href="#intro" class="active">소개</a>
-            <a href="#schedule">일정</a>
-            <a href="#atpi">ATPI</a>
-            <a href="#products">생산품</a>
-            <a href="#visits">방문지</a>
-            <a href="#meaning">민중교역</a>
+            <a href="#intro" class="active" data-lang="ko">소개</a>
+            <a href="#intro" data-lang="en">Intro</a>
+            <a href="#intro" data-lang="hil">Pakilala</a>
+
+            <a href="#schedule" data-lang="ko">일정</a>
+            <a href="#schedule" data-lang="en">Schedule</a>
+            <a href="#schedule" data-lang="hil">Iskedyul</a>
+
+            <a href="#atpi" data-lang="ko">ATPI</a>
+            <a href="#atpi" data-lang="en">ATPI</a>
+            <a href="#atpi" data-lang="hil">ATPI</a>
+
+            <a href="#products" data-lang="ko">생산품</a>
+            <a href="#products" data-lang="en">Products</a>
+            <a href="#products" data-lang="hil">Produkto</a>
+
+            <a href="#visits" data-lang="ko">방문지</a>
+            <a href="#visits" data-lang="en">Visits</a>
+            <a href="#visits" data-lang="hil">Bisita</a>
+
+            <a href="#meaning" data-lang="ko">민중교역</a>
+            <a href="#meaning" data-lang="en">People's Trade</a>
+            <a href="#meaning" data-lang="hil">Kalakal sang Pumuluyo</a>
         </div>
     </nav>
 
     <!-- 소개 섹션 -->
     <section id="intro">
-        <h2 class="section-title animate-fadeInUp">연수 소개</h2>
+        <h2 class="section-title">
+            <span data-lang="ko">연수 소개</span>
+            <span data-lang="en">Program Introduction</span>
+            <span data-lang="hil">Pakilala sang Programa</span>
+        </h2>
 
         <div class="image-gallery animate-scaleIn">
-            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80" alt="바나나">
-            <img src="https://images.unsplash.com/photo-1527847263472-aa5338d178b8?w=400&q=80" alt="사탕수수">
-            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=80" alt="농장">
-            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&q=80" alt="농민">
-            <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&q=80" alt="수확">
-            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400&q=80" alt="협동">
+            <img src="images/img_002.jpeg" alt="연수1">
+            <img src="images/img_003.jpeg" alt="연수2">
+            <img src="images/img_004.jpeg" alt="연수3">
+            <img src="images/img_005.jpeg" alt="연수4">
+            <img src="images/img_006.jpeg" alt="연수5">
+            <img src="images/img_007.jpeg" alt="연수6">
         </div>
 
         <div class="card animate-fadeInUp">
-            <p>2025년 12월 7일부터 11일까지, <span class="highlight-text">4박 5일</span>간 <span class="highlight-text">17명</span>의 참가자가 필리핀을 방문하여 <span class="highlight-text">민중교역</span>의 현장을 직접 체험하였습니다.</p>
-            <p>발랑곤 바나나와 마스코바도 설탕의 생산지를 방문하여 생산자들과 교류하고, 민중교역의 가치와 의미를 되새기는 시간을 가졌습니다.</p>
+            <p data-lang="ko">2025년 12월 7일부터 11일까지, <span class="highlight-text">4박 5일</span>간 <span class="highlight-text">17명</span>의 참가자가 필리핀을 방문하여 <span class="highlight-text">민중교역</span>의 현장을 직접 체험하였습니다.</p>
+            <p data-lang="en">From December 7-11, 2025, <span class="highlight-text">17 participants</span> visited the Philippines for <span class="highlight-text">5 days and 4 nights</span> to experience <span class="highlight-text">People's Trade</span> firsthand.</p>
+            <p data-lang="hil">Halin sa Disyembre 7-11, 2025, <span class="highlight-text">17 ka partisipante</span> ang nagbisita sa Pilipinas sa sulod sang <span class="highlight-text">5 ka adlaw kag 4 ka gab-i</span> para maeksperensyahan ang <span class="highlight-text">Kalakal sang Pumuluyo</span>.</p>
+
+            <p data-lang="ko">발랑곤 바나나와 마스코바도 설탕의 생산지를 방문하여 생산자들과 교류하고, 민중교역의 가치와 의미를 되새기는 시간을 가졌습니다.</p>
+            <p data-lang="en">We visited the production sites of Balangon bananas and Mascobado sugar, exchanged with producers, and reflected on the values of People's Trade.</p>
+            <p data-lang="hil">Nagbisita kami sa mga lugar nga nagaprodyus sang Balangon banana kag Mascobado nga asukal, nakigbahin sa mga mangunguma, kag nagpamalandong sa mga bili sang Kalakal sang Pumuluyo.</p>
 
             <div class="stats-grid">
-                <div class="stat-item animate-scaleIn delay-1">
-                    <div class="stat-number">17명</div>
-                    <div class="stat-label">참가자</div>
+                <div class="stat-item">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label" data-lang="ko">참가자</div>
+                    <div class="stat-label" data-lang="en">Participants</div>
+                    <div class="stat-label" data-lang="hil">Partisipante</div>
                 </div>
-                <div class="stat-item animate-scaleIn delay-2">
-                    <div class="stat-number">4박 5일</div>
-                    <div class="stat-label">연수 기간</div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label" data-lang="ko">일정 (일)</div>
+                    <div class="stat-label" data-lang="en">Days</div>
+                    <div class="stat-label" data-lang="hil">Adlaw</div>
                 </div>
-                <div class="stat-item animate-scaleIn delay-3">
-                    <div class="stat-number">7곳</div>
-                    <div class="stat-label">방문지</div>
+                <div class="stat-item">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label" data-lang="ko">방문지</div>
+                    <div class="stat-label" data-lang="en">Sites Visited</div>
+                    <div class="stat-label" data-lang="hil">Ginbisita</div>
                 </div>
-                <div class="stat-item animate-scaleIn delay-4">
-                    <div class="stat-number">2004년~</div>
-                    <div class="stat-label">교역 시작</div>
+                <div class="stat-item">
+                    <div class="stat-number">21</div>
+                    <div class="stat-label" data-lang="ko">교역 역사 (년)</div>
+                    <div class="stat-label" data-lang="en">Years of Trade</div>
+                    <div class="stat-label" data-lang="hil">Tuig sang Kalakal</div>
                 </div>
             </div>
         </div>
 
         <div class="quote animate-slideInLeft">
-            <p>민중교역을 통해 <span class="highlight-text">생산자와 소비자가 동등한 파트너</span>로서 연대해온 두레생협의 활동을 대내외에 알렸습니다.</p>
+            <p data-lang="ko">"민중교역을 통해 <span class="highlight-text">생산자와 소비자가 동등한 파트너</span>로서 연대해온 두레생협의 활동을 대내외에 알렸습니다."</p>
+            <p data-lang="en">"Through People's Trade, we have demonstrated Dure Coop's commitment to <span class="highlight-text">solidarity between producers and consumers as equal partners</span>."</p>
+            <p data-lang="hil">"Paagi sa Kalakal sang Pumuluyo, ginpakita namon ang pagpakig-isa sang Dure Coop sa <span class="highlight-text">mga prodyuser kag konsyumer bilang pareho nga mga partner</span>."</p>
         </div>
     </section>
 
     <!-- 일정 섹션 -->
     <section id="schedule">
-        <h2 class="section-title">연수 일정</h2>
+        <h2 class="section-title">
+            <span data-lang="ko">연수 일정</span>
+            <span data-lang="en">Schedule</span>
+            <span data-lang="hil">Iskedyul</span>
+        </h2>
 
-        <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&q=80" alt="필리핀" class="full-image animate-scaleIn">
+        <img src="images/img_009.jpeg" alt="일정" class="full-image animate-scaleIn">
 
         <div class="card">
             <div class="timeline">
                 <div class="timeline-item">
-                    <span class="timeline-date">12/7 (일)</span>
-                    <h3 class="timeline-title">✈️ 출국</h3>
-                    <p class="timeline-desc">인천 → 마닐라 → 바콜로드 이동</p>
-                    <img src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=600&q=80" alt="공항" class="timeline-image">
+                    <span class="timeline-date">12/7</span>
+                    <h3 class="timeline-title">
+                        <span data-lang="ko">✈️ 출국</span>
+                        <span data-lang="en">✈️ Departure</span>
+                        <span data-lang="hil">✈️ Paglakat</span>
+                    </h3>
+                    <p class="timeline-desc" data-lang="ko">인천 → 마닐라 → 바콜로드</p>
+                    <p class="timeline-desc" data-lang="en">Incheon → Manila → Bacolod</p>
+                    <p class="timeline-desc" data-lang="hil">Incheon → Manila → Bacolod</p>
                 </div>
 
                 <div class="timeline-item">
-                    <span class="timeline-date">12/8 (월)</span>
-                    <h3 class="timeline-title">🏢 ATPI 방문</h3>
-                    <p class="timeline-desc">
-                        • 오전: <span class="highlight-text">ATPI 사무소</span> 방문<br>
-                        • 오후: 사탕수수 농장 및 설탕공장 방문
-                    </p>
-                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&q=80" alt="농장" class="timeline-image">
+                    <span class="timeline-date">12/8</span>
+                    <h3 class="timeline-title">
+                        <span data-lang="ko">🏢 ATPI 방문</span>
+                        <span data-lang="en">🏢 ATPI Visit</span>
+                        <span data-lang="hil">🏢 Pagbisita sa ATPI</span>
+                    </h3>
+                    <p class="timeline-desc" data-lang="ko">ATPI 사무소 및 사탕수수 농장 방문</p>
+                    <p class="timeline-desc" data-lang="en">ATPI office and sugarcane farm visit</p>
+                    <p class="timeline-desc" data-lang="hil">Opisina sang ATPI kag tubuhan</p>
+                    <img src="images/img_011.jpeg" alt="ATPI" class="timeline-image">
                 </div>
 
                 <div class="timeline-item">
-                    <span class="timeline-date">12/9 (화)</span>
-                    <h3 class="timeline-title">🏭 ATMC 설탕공장</h3>
-                    <p class="timeline-desc">
-                        • 오전: <span class="highlight-text">바나나 산지</span> 방문<br>
-                        • 오후: 민중교역 포럼 / 토론
-                    </p>
-                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80" alt="바나나" class="timeline-image">
+                    <span class="timeline-date">12/9</span>
+                    <h3 class="timeline-title">
+                        <span data-lang="ko">🏭 ATMC 설탕공장</span>
+                        <span data-lang="en">🏭 ATMC Sugar Mill</span>
+                        <span data-lang="hil">🏭 ATMC Sugar Mill</span>
+                    </h3>
+                    <p class="timeline-desc" data-lang="ko">바나나 산지 방문 및 민중교역 포럼</p>
+                    <p class="timeline-desc" data-lang="en">Banana farm visit and People's Trade forum</p>
+                    <p class="timeline-desc" data-lang="hil">Pagbisita sa tanaman sang saging kag forum</p>
+                    <img src="images/img_013.jpeg" alt="설탕공장" class="timeline-image">
                 </div>
 
                 <div class="timeline-item">
-                    <span class="timeline-date">12/10 (수)</span>
-                    <h3 class="timeline-title">🤝 생산자 교류</h3>
-                    <p class="timeline-desc">
-                        • 오전: 생산자 조직 방문<br>
-                        • 오후: ATPI 본부 방문
-                    </p>
-                    <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=600&q=80" alt="교류" class="timeline-image">
+                    <span class="timeline-date">12/10</span>
+                    <h3 class="timeline-title">
+                        <span data-lang="ko">🤝 생산자 교류</span>
+                        <span data-lang="en">🤝 Producer Exchange</span>
+                        <span data-lang="hil">🤝 Pagbinuligay sa mga Prodyuser</span>
+                    </h3>
+                    <p class="timeline-desc" data-lang="ko">생산자 조직 방문 및 ATPI 본부</p>
+                    <p class="timeline-desc" data-lang="en">Producer organization visit and ATPI HQ</p>
+                    <p class="timeline-desc" data-lang="hil">Pagbisita sa organisasyon sang prodyuser</p>
+                    <img src="images/img_015.jpeg" alt="교류" class="timeline-image">
                 </div>
 
                 <div class="timeline-item">
-                    <span class="timeline-date">12/11 (목)</span>
-                    <h3 class="timeline-title">🏠 귀국</h3>
-                    <p class="timeline-desc">바콜로드 → 마닐라 → 인천 귀국</p>
+                    <span class="timeline-date">12/11</span>
+                    <h3 class="timeline-title">
+                        <span data-lang="ko">🏠 귀국</span>
+                        <span data-lang="en">🏠 Return</span>
+                        <span data-lang="hil">🏠 Pagbalik</span>
+                    </h3>
+                    <p class="timeline-desc" data-lang="ko">바콜로드 → 마닐라 → 인천</p>
+                    <p class="timeline-desc" data-lang="en">Bacolod → Manila → Incheon</p>
+                    <p class="timeline-desc" data-lang="hil">Bacolod → Manila → Incheon</p>
                 </div>
             </div>
         </div>
@@ -978,39 +870,47 @@
 
     <!-- ATPI 섹션 -->
     <section id="atpi">
-        <h2 class="section-title">ATPI 소개</h2>
-
-        <div class="image-card animate-scaleIn">
-            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80" alt="필리핀 농촌">
-            <div class="image-card-overlay">
-                <h3>Alter Trade Philippines</h3>
-                <p>민중교역의 중심</p>
-            </div>
-        </div>
+        <h2 class="section-title">ATPI</h2>
 
         <div class="visit-card animate-fadeInUp">
+            <img src="images/img_012.jpeg" alt="ATPI" class="visit-image">
             <div class="visit-header">
                 <h3>🌿 ATPI</h3>
                 <p>Alter Trade Philippines, Inc.</p>
             </div>
             <div class="visit-body">
-                <h4>설립 배경</h4>
-                <p>1980년대 사탕수수 가격 폭락으로 많은 농민들이 기아에 시달렸습니다. 일본 시민단체의 지원으로 1987년 <span class="highlight-text">'네그로스 캠페인'</span>이 시작되었고, 이것이 ATPI 설립의 계기가 되었습니다.</p>
+                <h4 data-lang="ko">설립 배경</h4>
+                <h4 data-lang="en">Background</h4>
+                <h4 data-lang="hil">Background</h4>
 
-                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80" alt="농민" class="full-image">
+                <p data-lang="ko">1980년대 사탕수수 가격 폭락으로 많은 농민들이 기아에 시달렸습니다. 일본 시민단체의 지원으로 1987년 <span class="highlight-text">'네그로스 캠페인'</span>이 시작되었고, 이것이 ATPI 설립의 계기가 되었습니다.</p>
+                <p data-lang="en">In the 1980s, many farmers suffered from hunger due to the collapse of sugar prices. With support from Japanese civil society, the <span class="highlight-text">'Negros Campaign'</span> began in 1987, leading to ATPI's establishment.</p>
+                <p data-lang="hil">Sang 1980s, madamo nga mangunguma ang nag-antus sang gutom tungod sa pagbagsak sang presyo sang asukal. Sa bulig sang Japanese civil society, nagsugod ang <span class="highlight-text">'Negros Campaign'</span> sang 1987.</p>
 
-                <h4>현재 규모</h4>
+                <img src="images/img_014.jpeg" alt="농민" class="full-image">
+
+                <h4 data-lang="ko">현재 규모</h4>
+                <h4 data-lang="en">Current Scale</h4>
+                <h4 data-lang="hil">Kadako Subong</h4>
+
                 <ul>
-                    <li>전체 소농 조직: <strong>196개</strong></li>
-                    <li>바나나 농민: <strong>69개</strong> 조직</li>
-                    <li>설탕 농민: <strong>36개</strong> 조직, 생산자 23개 조직</li>
-                    <li>기타 작물: <strong>49개</strong> 조직</li>
-                    <li>직원: 약 <strong>156명</strong></li>
-                    <li>혜택 농가: 약 <strong>2,800가구</strong></li>
+                    <li data-lang="ko">소농 조직: <strong>196개</strong></li>
+                    <li data-lang="en">Farmer organizations: <strong>196</strong></li>
+                    <li data-lang="hil">Organisasyon sang mangunguma: <strong>196</strong></li>
+
+                    <li data-lang="ko">바나나 농민: <strong>69개</strong> 조직</li>
+                    <li data-lang="en">Banana farmers: <strong>69</strong> organizations</li>
+                    <li data-lang="hil">Mangunguma sang saging: <strong>69</strong> nga organisasyon</li>
+
+                    <li data-lang="ko">혜택 농가: 약 <strong>2,800가구</strong></li>
+                    <li data-lang="en">Beneficiary households: <strong>2,800+</strong></li>
+                    <li data-lang="hil">Mga pamilya nga nakabenepisyo: <strong>2,800+</strong></li>
                 </ul>
 
                 <div class="highlight-box">
-                    <p>🌱 <span class="highlight-text">'민중교역(People's Trade)'</span>이라는 이름은 단순한 공정무역을 넘어, 생산자와 소비자가 동등한 파트너로서 연대하는 것을 의미합니다.</p>
+                    <p data-lang="ko">🌱 <span class="highlight-text">'민중교역(People's Trade)'</span>은 생산자와 소비자가 동등한 파트너로서 연대하는 것을 의미합니다.</p>
+                    <p data-lang="en">🌱 <span class="highlight-text">'People's Trade'</span> means solidarity between producers and consumers as equal partners.</p>
+                    <p data-lang="hil">🌱 <span class="highlight-text">'Kalakal sang Pumuluyo'</span> nagakahulugan sang pagpakig-isa sang mga prodyuser kag konsyumer bilang pareho nga mga partner.</p>
                 </div>
             </div>
         </div>
@@ -1018,87 +918,111 @@
 
     <!-- 생산품 섹션 -->
     <section id="products">
-        <h2 class="section-title">주요 생산품</h2>
+        <h2 class="section-title">
+            <span data-lang="ko">주요 생산품</span>
+            <span data-lang="en">Main Products</span>
+            <span data-lang="hil">Mga Produkto</span>
+        </h2>
 
         <div class="accordion">
             <button class="accordion-header">
-                <span>🍌 발랑곤 바나나</span>
+                <span>🍌 <span data-lang="ko">발랑곤 바나나</span><span data-lang="en">Balangon Banana</span><span data-lang="hil">Balangon Banana</span></span>
                 <span class="accordion-icon">▼</span>
             </button>
             <div class="accordion-content">
-                <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=800&q=80" alt="바나나" class="accordion-image">
+                <img src="images/img_016.jpeg" alt="바나나" class="accordion-image">
 
-                <p><strong>생산 지역:</strong> 파나이, 민다나오, 네그로스, 보홀 <span class="highlight-text">4개 지역</span></p>
-                <p><strong>참여 농가:</strong> <span class="highlight-text">2,837가구</span></p>
+                <p data-lang="ko"><strong>생산 지역:</strong> 파나이, 민다나오, 네그로스, 보홀 <span class="highlight-text">4개 지역</span></p>
+                <p data-lang="en"><strong>Production areas:</strong> Panay, Mindanao, Negros, Bohol - <span class="highlight-text">4 regions</span></p>
+                <p data-lang="hil"><strong>Lugar sang produksyon:</strong> Panay, Mindanao, Negros, Bohol - <span class="highlight-text">4 ka rehiyon</span></p>
 
-                <div class="image-gallery" style="margin: 15px 0;">
-                    <img src="https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&q=80" alt="바나나 농장">
-                    <img src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=400&q=80" alt="바나나">
-                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80" alt="수확">
+                <p data-lang="ko"><strong>참여 농가:</strong> <span class="highlight-text">2,837가구</span></p>
+                <p data-lang="en"><strong>Participating households:</strong> <span class="highlight-text">2,837</span></p>
+                <p data-lang="hil"><strong>Mga pamilya nga nagapartisipar:</strong> <span class="highlight-text">2,837</span></p>
+
+                <div class="image-gallery">
+                    <img src="images/img_017.jpeg" alt="바나나1">
+                    <img src="images/img_018.jpeg" alt="바나나2">
+                    <img src="images/img_019.jpeg" alt="바나나3">
                 </div>
 
-                <p><strong>특징:</strong></p>
-                <ul>
-                    <li>2017년 바나나 질병 발생 후 복구 진행</li>
-                    <li>현재 4~5년 전 수준으로 회복 중</li>
-                    <li><span class="highlight-text">무농약, 친환경</span> 재배</li>
-                    <li>소규모 가족 농가 중심</li>
-                </ul>
                 <div class="tags">
-                    <span class="tag">🌿 친환경</span>
-                    <span class="tag">👨‍🌾 소농 지원</span>
-                    <span class="tag">🤝 공정무역</span>
+                    <span class="tag" data-lang="ko">🌿 친환경</span>
+                    <span class="tag" data-lang="en">🌿 Eco-friendly</span>
+                    <span class="tag" data-lang="hil">🌿 Eco-friendly</span>
+
+                    <span class="tag" data-lang="ko">👨‍🌾 소농 지원</span>
+                    <span class="tag" data-lang="en">👨‍🌾 Small farmers</span>
+                    <span class="tag" data-lang="hil">👨‍🌾 Gamay nga mangunguma</span>
+
+                    <span class="tag" data-lang="ko">🤝 공정무역</span>
+                    <span class="tag" data-lang="en">🤝 Fair Trade</span>
+                    <span class="tag" data-lang="hil">🤝 Patas nga Kalakal</span>
                 </div>
             </div>
         </div>
 
         <div class="accordion">
             <button class="accordion-header">
-                <span>🍯 마스코바도 설탕</span>
+                <span>🍯 <span data-lang="ko">마스코바도 설탕</span><span data-lang="en">Mascobado Sugar</span><span data-lang="hil">Mascobado Sugar</span></span>
                 <span class="accordion-icon">▼</span>
             </button>
             <div class="accordion-content">
-                <img src="https://images.unsplash.com/photo-1527847263472-aa5338d178b8?w=800&q=80" alt="사탕수수" class="accordion-image">
+                <img src="images/img_020.jpeg" alt="설탕" class="accordion-image">
 
-                <p><strong>생산 면적:</strong> <span class="highlight-text">156개 농가</span>, 147.66헥타르</p>
-                <p><strong>생산량:</strong> 연간 <span class="highlight-text">1,000~1,400톤</span></p>
+                <p data-lang="ko"><strong>생산량:</strong> 연간 <span class="highlight-text">1,000~1,400톤</span></p>
+                <p data-lang="en"><strong>Production:</strong> <span class="highlight-text">1,000-1,400 tons</span> annually</p>
+                <p data-lang="hil"><strong>Produksyon:</strong> <span class="highlight-text">1,000-1,400 tonelada</span> kada tuig</p>
 
-                <p><strong>특징:</strong></p>
-                <ul>
-                    <li><span class="highlight-text">90% 이상 유기농</span> 재배</li>
-                    <li>전통 방식의 비정제 원당</li>
-                    <li>미네랄과 영양소 풍부</li>
-                    <li>당도 85Brix, 수분 3% 이하</li>
-                </ul>
+                <p data-lang="ko"><strong>특징:</strong> <span class="highlight-text">90% 이상 유기농</span> 재배, 전통 방식 비정제</p>
+                <p data-lang="en"><strong>Features:</strong> <span class="highlight-text">90%+ organic</span>, traditional unrefined method</p>
+                <p data-lang="hil"><strong>Kinaiya:</strong> <span class="highlight-text">90%+ organiko</span>, tradisyonal nga pamaagi</p>
 
-                <h4 style="margin-top: 20px; color: var(--primary-dark); font-weight: 700;">⚙️ 생산 과정</h4>
+                <h4 data-lang="ko">⚙️ 생산 과정</h4>
+                <h4 data-lang="en">⚙️ Production Process</h4>
+                <h4 data-lang="hil">⚙️ Proseso sang Produksyon</h4>
+
                 <div class="process-steps">
                     <div class="process-step">
                         <span class="process-number">1</span>
-                        <span class="process-text">사탕수수 수확 후 즙 추출</span>
+                        <span class="process-text" data-lang="ko">사탕수수 수확 후 즙 추출</span>
+                        <span class="process-text" data-lang="en">Harvest sugarcane and extract juice</span>
+                        <span class="process-text" data-lang="hil">Gaalanon ang tubo kag kuhaon ang duga</span>
                     </div>
                     <div class="process-step">
                         <span class="process-number">2</span>
-                        <span class="process-text">1차 가열 (불순물 제거)</span>
+                        <span class="process-text" data-lang="ko">1차 가열 (불순물 제거)</span>
+                        <span class="process-text" data-lang="en">First heating (remove impurities)</span>
+                        <span class="process-text" data-lang="hil">Una nga pagpainit</span>
                     </div>
                     <div class="process-step">
                         <span class="process-number">3</span>
-                        <span class="process-text">2~3차 가열 (65 Brix 농축)</span>
+                        <span class="process-text" data-lang="ko">2~3차 가열 (65 Brix 농축)</span>
+                        <span class="process-text" data-lang="en">2nd-3rd heating (concentrate to 65 Brix)</span>
+                        <span class="process-text" data-lang="hil">Ikaduha-ikatlo nga pagpainit</span>
                     </div>
                     <div class="process-step">
                         <span class="process-number">4</span>
-                        <span class="process-text">냉각 및 건조</span>
+                        <span class="process-text" data-lang="ko">냉각 및 건조</span>
+                        <span class="process-text" data-lang="en">Cooling and drying</span>
+                        <span class="process-text" data-lang="hil">Pagpabugnaw kag pagpamala</span>
                     </div>
                     <div class="process-step">
                         <span class="process-number">5</span>
-                        <span class="process-text">포장 (50kg 단위)</span>
+                        <span class="process-text" data-lang="ko">포장 (50kg)</span>
+                        <span class="process-text" data-lang="en">Packaging (50kg)</span>
+                        <span class="process-text" data-lang="hil">Pagputos (50kg)</span>
                     </div>
                 </div>
 
                 <div class="tags">
-                    <span class="tag">🌱 유기농</span>
-                    <span class="tag">✨ 비정제</span>
-                    <span class="tag">🏺 전통방식</span>
+                    <span class="tag" data-lang="ko">🌱 유기농</span>
+                    <span class="tag" data-lang="en">🌱 Organic</span>
+                    <span class="tag" data-lang="hil">🌱 Organiko</span>
+
+                    <span class="tag" data-lang="ko">✨ 비정제</span>
+                    <span class="tag" data-lang="en">✨ Unrefined</span>
+                    <span class="tag" data-lang="hil">✨ Wala naproseso</span>
                 </div>
             </div>
         </div>
@@ -1106,74 +1030,73 @@
 
     <!-- 방문지 섹션 -->
     <section id="visits">
-        <h2 class="section-title">주요 방문지</h2>
+        <h2 class="section-title">
+            <span data-lang="ko">주요 방문지</span>
+            <span data-lang="en">Sites Visited</span>
+            <span data-lang="hil">Mga Ginbisita</span>
+        </h2>
 
-        <div class="visit-card animate-fadeInUp">
-            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80" alt="설탕농장" class="visit-image">
+        <div class="visit-card">
+            <img src="images/img_011.jpeg" alt="LUFISFA" class="visit-image">
             <div class="visit-header" style="background: linear-gradient(135deg, #1565C0, #42A5F5);">
                 <h3>🏭 LUFISFA</h3>
-                <p>설탕 생산자 협동조합</p>
+                <p data-lang="ko">설탕 생산자 협동조합</p>
+                <p data-lang="en">Sugar Producers Cooperative</p>
+                <p data-lang="hil">Kooperatiba sang mga Prodyuser sang Asukal</p>
             </div>
             <div class="visit-body">
-                <p>1982년에 설립되어 2011년 협동조합으로 재조직된 농민 단체입니다. 설탕 농장, 가공장, 공동 창고를 운영하며 <span class="highlight-text">농민들의 자립</span>을 지원합니다.</p>
-                <p>조합원들은 수익의 일부를 공동 기금으로 적립하여 <span class="highlight-text">교육, 의료, 긴급 지원</span>에 사용합니다.</p>
+                <p data-lang="ko">1982년에 설립되어 2011년 협동조합으로 재조직된 농민 단체입니다.</p>
+                <p data-lang="en">A farmers' organization established in 1982 and reorganized as a cooperative in 2011.</p>
+                <p data-lang="hil">Organisasyon sang mangunguma nga gintukod sang 1982 kag gin-reorganize bilang kooperatiba sang 2011.</p>
             </div>
         </div>
 
-        <div class="visit-card animate-fadeInUp delay-1">
-            <img src="https://images.unsplash.com/photo-1527847263472-aa5338d178b8?w=800&q=80" alt="설탕공장" class="visit-image">
+        <div class="visit-card">
+            <img src="images/img_013.jpeg" alt="ATMC" class="visit-image">
             <div class="visit-header" style="background: linear-gradient(135deg, #6D4C41, #A1887F);">
                 <h3>⚙️ ATMC</h3>
-                <p>Alter Trade Manufacturing Corporation</p>
+                <p data-lang="ko">알터트레이드 제조 회사</p>
+                <p data-lang="en">Alter Trade Manufacturing Corp.</p>
+                <p data-lang="hil">Alter Trade Manufacturing Corp.</p>
             </div>
             <div class="visit-body">
-                <p><span class="highlight-text">78개 농민 조직</span>에서 생산한 사탕수수를 가공하는 설탕 공장입니다. 연간 <span class="highlight-text">80톤</span>의 설탕을 생산합니다.</p>
-                <h4>품질 기준</h4>
-                <ul>
-                    <li>수분 함량: <strong>3% 이하</strong></li>
-                    <li>당도: <strong>85 Brix</strong></li>
-                    <li>pH: <strong>5.5</strong></li>
-                </ul>
+                <p data-lang="ko"><span class="highlight-text">78개 농민 조직</span>에서 생산한 사탕수수를 가공하는 설탕 공장입니다.</p>
+                <p data-lang="en">A sugar mill processing sugarcane from <span class="highlight-text">78 farmer organizations</span>.</p>
+                <p data-lang="hil">Sugar mill nga nagaproseso sang tubo halin sa <span class="highlight-text">78 ka organisasyon sang mangunguma</span>.</p>
             </div>
         </div>
 
-        <div class="visit-card animate-fadeInUp delay-2">
-            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80" alt="바나나농장" class="visit-image">
+        <div class="visit-card">
+            <img src="images/img_015.jpeg" alt="DAFWARBA" class="visit-image">
             <div class="visit-header" style="background: linear-gradient(135deg, #2E7D32, #66BB6A);">
                 <h3>🌾 DAFWARBA</h3>
-                <p>농지개혁 수혜 농민 협회</p>
+                <p data-lang="ko">농지개혁 수혜 농민 협회</p>
+                <p data-lang="en">Agrarian Reform Beneficiaries Assoc.</p>
+                <p data-lang="hil">Asosasyon sang mga Nakabenepisyo sa Reporma sa Duta</p>
             </div>
             <div class="visit-body">
-                <p>1970년대 대지주 소유였던 토지가 <span class="highlight-text">농지개혁</span>을 통해 농민들에게 분배되면서 시작된 협회입니다.</p>
-                <p>2003년 두레생협과 '발랑곤 바나나'와 '민중교역 설탕' 거래를 시작했습니다.</p>
-                <div class="highlight-box">
-                    <p>💪 "이 땅에서 일하는 것이 곧 <span class="highlight-text">우리의 권리</span>"라는 신념으로 농민들이 협동하고 있습니다.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="visit-card animate-fadeInUp delay-3">
-            <img src="https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=800&q=80" alt="산악지역" class="visit-image">
-            <div class="visit-header" style="background: linear-gradient(135deg, #F57C00, #FFB74D);">
-                <h3>🏔️ PIBFA</h3>
-                <p>바나나 생산자 협회</p>
-            </div>
-            <div class="visit-body">
-                <p>해발 <span class="highlight-text">2,465m</span> 산악 지역에서 바나나를 재배하는 농민 협회입니다. 500m 이상의 고지대에서 <span class="highlight-text">1년 4개월</span>에 걸쳐 바나나가 자랍니다.</p>
-                <p>2006년 ATPI와 협력을 시작하여 2013년 정식 회원이 되었습니다. <span class="highlight-text">70여 가구</span>가 소규모 농장을 운영합니다.</p>
+                <p data-lang="ko">2003년 두레생협과 '발랑곤 바나나'와 '민중교역 설탕' 거래를 시작했습니다.</p>
+                <p data-lang="en">Started trading Balangon bananas and People's Trade sugar with Dure Coop in 2003.</p>
+                <p data-lang="hil">Nagsugod sang pagbaligya sang Balangon banana kag asukal sang Kalakal sang Pumuluyo sa Dure Coop sang 2003.</p>
             </div>
         </div>
     </section>
 
-    <!-- 민중교역 의미 섹션 -->
+    <!-- 민중교역 의미 -->
     <section id="meaning">
-        <h2 class="section-title">민중교역의 의미</h2>
+        <h2 class="section-title">
+            <span data-lang="ko">민중교역의 의미</span>
+            <span data-lang="en">Meaning of People's Trade</span>
+            <span data-lang="hil">Kahulugan sang Kalakal sang Pumuluyo</span>
+        </h2>
 
         <div class="banner-section animate-scaleIn">
-            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=800&q=80" alt="협력" class="banner-image">
+            <img src="images/img_005.jpeg" alt="협력" class="banner-image">
             <div class="banner-overlay">
                 <h3>🤝 People's Trade</h3>
-                <p>생산자와 소비자가<br>동등한 파트너로 연대하는 무역</p>
+                <p data-lang="ko">생산자와 소비자가<br>동등한 파트너로 연대</p>
+                <p data-lang="en">Producers and consumers<br>united as equal partners</p>
+                <p data-lang="hil">Mga prodyuser kag konsyumer<br>nagahiliusa bilang pareho nga partner</p>
             </div>
         </div>
 
@@ -1182,51 +1105,67 @@
                 <span class="card-icon">🌍</span>
                 People's Trade
             </h3>
-            <p>민중교역은 단순한 <span class="highlight-text">'공정무역(Fair Trade)'</span>을 넘어서는 개념입니다. 생산자와 소비자가 <span class="highlight-text blink-highlight">'동등한 파트너'</span>로서 서로를 존중하고 연대하는 것을 의미합니다.</p>
+
+            <p data-lang="ko">민중교역은 단순한 <span class="highlight-text">'공정무역(Fair Trade)'</span>을 넘어서는 개념입니다. 생산자와 소비자가 <span class="highlight-text">'동등한 파트너'</span>로서 서로를 존중하고 연대합니다.</p>
+            <p data-lang="en">People's Trade goes beyond simple <span class="highlight-text">'Fair Trade'</span>. Producers and consumers respect each other and stand in solidarity as <span class="highlight-text">'equal partners'</span>.</p>
+            <p data-lang="hil">Ang Kalakal sang Pumuluyo nagalapaw sa simple nga <span class="highlight-text">'Patas nga Kalakal'</span>. Ang mga prodyuser kag konsyumer nagatahod sa isa kag isa bilang <span class="highlight-text">'pareho nga mga partner'</span>.</p>
 
             <hr>
 
-            <h4 style="font-size: 1.1rem; margin: 20px 0 15px; color: var(--primary-dark); font-weight: 900;">💎 핵심 가치</h4>
-            <ul style="padding-left: 20px; color: var(--text-light);">
-                <li><span class="highlight-text">생산자 자립:</span> 농민들이 스스로 조직을 만들고 운영</li>
-                <li><span class="highlight-text">공정한 가격:</span> 시장 가격이 아닌 생산 비용과 생활 보장 기준</li>
-                <li><span class="highlight-text">지속 가능성:</span> 환경을 해치지 않는 친환경 농법</li>
-                <li><span class="highlight-text">상호 연대:</span> 소비자와 생산자가 서로의 삶에 관심</li>
+            <h4 data-lang="ko">💎 핵심 가치</h4>
+            <h4 data-lang="en">💎 Core Values</h4>
+            <h4 data-lang="hil">💎 Mga Sentral nga Bili</h4>
+
+            <ul>
+                <li data-lang="ko"><span class="highlight-text">생산자 자립:</span> 농민들이 스스로 조직을 운영</li>
+                <li data-lang="en"><span class="highlight-text">Producer Independence:</span> Farmers run their own organizations</li>
+                <li data-lang="hil"><span class="highlight-text">Kahilwayan sang Prodyuser:</span> Ang mga mangunguma nagadumala sang ila kaugalingon nga organisasyon</li>
+
+                <li data-lang="ko"><span class="highlight-text">공정한 가격:</span> 생활 보장 기준의 가격</li>
+                <li data-lang="en"><span class="highlight-text">Fair Pricing:</span> Prices that ensure livelihood</li>
+                <li data-lang="hil"><span class="highlight-text">Patas nga Presyo:</span> Presyo nga nagasiguro sang pangabuhian</li>
+
+                <li data-lang="ko"><span class="highlight-text">지속 가능성:</span> 환경을 해치지 않는 농법</li>
+                <li data-lang="en"><span class="highlight-text">Sustainability:</span> Eco-friendly farming</li>
+                <li data-lang="hil"><span class="highlight-text">Pagkapadayon:</span> Pagpanguma nga wala nagahalit sa kapalibutan</li>
+
+                <li data-lang="ko"><span class="highlight-text">상호 연대:</span> 서로의 삶에 관심</li>
+                <li data-lang="en"><span class="highlight-text">Mutual Solidarity:</span> Caring for each other's lives</li>
+                <li data-lang="hil"><span class="highlight-text">Pagpakig-isa:</span> Pagkabalaka sa kabuhi sang isa kag isa</li>
             </ul>
         </div>
 
         <div class="quote animate-slideInLeft">
-            <p>1980년대 기아 상황에서 시작된 민중교역은 <span class="highlight-text">'나눔'이 아닌 '연대'</span>의 정신으로, 생산자와 소비자가 함께 성장하는 새로운 무역의 길을 열었습니다.</p>
+            <p data-lang="ko">"1980년대 기아 상황에서 시작된 민중교역은 <span class="highlight-text">'나눔'이 아닌 '연대'</span>의 정신으로, 함께 성장하는 새로운 무역의 길을 열었습니다."</p>
+            <p data-lang="en">"People's Trade, born from the 1980s famine, opened a new path of trade based on <span class="highlight-text">'solidarity', not 'charity'</span>."</p>
+            <p data-lang="hil">"Ang Kalakal sang Pumuluyo, nga nagsugod sang gutom sang 1980s, nagbukas sang bag-o nga dalan sang kalakal base sa <span class="highlight-text">'pagpakig-isa', indi 'pagbulig'</span>."</p>
         </div>
 
-        <div class="card animate-fadeInUp">
-            <h3 class="card-title">
-                <span class="card-icon">🌱</span>
-                두레생협과 민중교역
-            </h3>
-            <p>2004년 두레생협은 ATPI와 민중교역을 시작했습니다. 단순히 상품을 수입하는 것이 아니라, <span class="highlight-text">생산자들의 삶과 지역사회 발전</span>에 함께 참여하고 있습니다.</p>
-
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">21년</div>
-                    <div class="stat-label">교역 역사</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">2,800+</div>
-                    <div class="stat-label">혜택 농가</div>
-                </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">21</div>
+                <div class="stat-label" data-lang="ko">교역 역사 (년)</div>
+                <div class="stat-label" data-lang="en">Years of Trade</div>
+                <div class="stat-label" data-lang="hil">Tuig sang Kalakal</div>
             </div>
-
-            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80" alt="연대" class="full-image">
+            <div class="stat-item">
+                <div class="stat-number">2,800+</div>
+                <div class="stat-label" data-lang="ko">혜택 농가</div>
+                <div class="stat-label" data-lang="en">Beneficiary Families</div>
+                <div class="stat-label" data-lang="hil">Pamilya nga Nakabenepisyo</div>
+            </div>
         </div>
+
+        <img src="images/img_007.jpeg" alt="연대" class="full-image">
     </section>
 
     <!-- 푸터 -->
     <footer class="footer">
-        <p class="footer-logo">🌿 두레생협연합회</p>
+        <p class="footer-logo">🌿 <span data-lang="ko">두레생협연합회</span><span data-lang="en">Dure Coop Federation</span><span data-lang="hil">Dure Coop Federation</span></p>
         <p>
-            2025 필리핀 민중교류 연수 자료집<br>
-            <strong>함께하는 민중교역, 연대하는 생활협동조합</strong>
+            <span data-lang="ko">2025 필리핀 민중교류 연수 자료집<br><strong>함께하는 민중교역, 연대하는 생활협동조합</strong></span>
+            <span data-lang="en">2025 Philippines People's Exchange Program<br><strong>People's Trade Together, Solidarity Cooperatives</strong></span>
+            <span data-lang="hil">2025 Pilipinas Programa sang Pagbinuligay<br><strong>Kalakal sang Pumuluyo, Kooperatiba sang Pagpakig-isa</strong></span>
         </p>
     </footer>
 
@@ -1234,33 +1173,39 @@
     <button class="back-to-top" id="backToTop">↑</button>
 
     <script>
-        // 스크롤 애니메이션
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+        // 언어 전환
+        let currentLang = 'ko';
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+        function switchLanguage(lang) {
+            currentLang = lang;
 
-                    // 강조 텍스트 애니메이션
-                    const highlights = entry.target.querySelectorAll('.highlight-text');
-                    highlights.forEach((el, index) => {
-                        setTimeout(() => {
-                            el.classList.add('animate');
-                        }, index * 200);
-                    });
+            // 버튼 활성화
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.selectLang === lang) {
+                    btn.classList.add('active');
                 }
             });
-        }, observerOptions);
 
-        // 애니메이션 요소 관찰
-        document.querySelectorAll('.animate-fadeInUp, .animate-slideInLeft, .animate-scaleIn').forEach(el => {
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
+            // 콘텐츠 전환
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.dataset.lang === lang) {
+                    el.style.display = el.tagName === 'SPAN' || el.tagName === 'STRONG' ? 'inline' : 'block';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+
+            // 하이라이트 애니메이션 재실행
+            document.querySelectorAll('.highlight-text').forEach(el => {
+                el.classList.remove('animate');
+                setTimeout(() => el.classList.add('animate'), 100);
+            });
+        }
+
+        // 언어 버튼 이벤트
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchLanguage(btn.dataset.selectLang));
         });
 
         // 네비게이션 활성화
@@ -1270,46 +1215,36 @@
         function updateNav() {
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (scrollY >= sectionTop) {
+                if (scrollY >= section.offsetTop - 100) {
                     current = section.getAttribute('id');
                 }
             });
-
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
+                if (link.getAttribute('href') === '#' + current && link.dataset.lang === currentLang) {
                     link.classList.add('active');
                 }
             });
         }
-
         window.addEventListener('scroll', updateNav);
 
         // 아코디언
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-        accordionHeaders.forEach(header => {
+        document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {
                 header.classList.toggle('active');
-                const content = header.nextElementSibling;
-                content.classList.toggle('active');
+                header.nextElementSibling.classList.toggle('active');
             });
         });
 
         // 첫 번째 아코디언 열기
-        accordionHeaders[0].classList.add('active');
-        accordionHeaders[0].nextElementSibling.classList.add('active');
+        document.querySelector('.accordion-header').classList.add('active');
+        document.querySelector('.accordion-content').classList.add('active');
 
         // 맨 위로 버튼
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
+            backToTop.classList.toggle('visible', window.scrollY > 300);
         });
-
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
@@ -1318,26 +1253,29 @@
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const target = document.querySelector(targetId);
-                const navHeight = document.querySelector('.nav').offsetHeight;
-                const targetPosition = target.offsetTop - navHeight;
-
+                const target = document.querySelector(link.getAttribute('href'));
                 window.scrollTo({
-                    top: targetPosition,
+                    top: target.offsetTop - 60,
                     behavior: 'smooth'
                 });
             });
         });
 
-        // 페이지 로드 시 첫 화면 애니메이션
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.highlight-text').forEach((el, index) => {
-                setTimeout(() => {
-                    el.classList.add('animate');
-                }, 1000 + index * 150);
+        // 스크롤 애니메이션
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.highlight-text').forEach((el, i) => {
+                        setTimeout(() => el.classList.add('animate'), i * 150);
+                    });
+                }
             });
-        });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+        // 초기화
+        switchLanguage('ko');
     </script>
 </body>
 </html>
